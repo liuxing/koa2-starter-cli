@@ -3,9 +3,14 @@
 const program = require('commander')
 const path = require('path')
 const fs = require('fs')
+const os = require('os')
 const inquirer = require('inquirer')
 const download = require('../lib/download')
-const rm = require('rimraf').sync
+const ask = require('../lib/ask')
+const generate = require('../lib/generate')
+
+const tmp = path.join(os.homedir(), '.koa2-starter/template')
+const repo = 'github:liuxing/koa2-starter#template'
 
 program
   .version(require('../package.json').version)
@@ -23,7 +28,6 @@ if (process.argv.length === 2) {
 }
 
 async function init (target) {
-  const repo = 'github:liuxing/koa2-starter#master'
   if (typeof target === 'object') {
     target = '.'
   }
@@ -38,10 +42,13 @@ async function init (target) {
       name: 'ok'
     }])
     if (answers.ok) {
-      rm(to)
-      await download(repo, to)
+      const answers = await ask()
+      await download(repo, tmp)
+      await generate(answers, tmp, to)
     }
     return
   }
-  await download(repo, to)
+  const answers = await ask()
+  await download(repo, tmp)
+  await generate(answers, tmp, to)
 }
