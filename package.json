@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liuxing/koa2-starter.git"
+    "url": "git+https://github.com/liuxing/koa2-starter-cli.git"
   },
   "keywords": [
     "koa2",
@@ -32,15 +32,16 @@
   "author": "Liu Xing",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/liuxing/koa2-starter/issues"
+    "url": "https://github.com/liuxing/koa2-starter-cli/issues"
   },
-  "homepage": "https://github.com/liuxing/koa2-starter#readme",
+  "homepage": "https://github.com/liuxing/koa2-starter-cli#readme",
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.15.1",
     "download-git-repo": "^1.0.2",
     "inquirer": "^6.0.0",
-    "ora": "^2.1.0"
+    "ora": "^2.1.0",
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
     "commitizen": "^2.10.1",
