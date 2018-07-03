@@ -44,6 +44,7 @@ async function init (target) {
       name: 'ok'
     }])
     if (answers.ok) {
+      rm(to)
       await downloadAndGenerate(target, to)
     }
     return
