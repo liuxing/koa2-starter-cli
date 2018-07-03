@@ -45,6 +45,7 @@
     "metalsmith": "^2.3.0",
     "minimatch": "^3.0.4",
     "ora": "^2.1.0",
+    "read-metadata": "^1.0.0",
     "rimraf": "^2.6.2"
   },
   "devDependencies": {

@@ -5,9 +5,11 @@ const path = require('path')
 const fs = require('fs')
 const os = require('os')
 const inquirer = require('inquirer')
+const rm = require('rimraf').sync
+const chalk = require('chalk')
 const download = require('../lib/download')
-const ask = require('../lib/ask')
 const generate = require('../lib/generate')
+const logger = require('../lib/logger')
 
 const tmp = path.join(os.homedir(), '.koa2-starter/template')
 const repo = 'github:liuxing/koa2-starter#template'
@@ -42,13 +44,24 @@ async function init (target) {
       name: 'ok'
     }])
     if (answers.ok) {
-      const answers = await ask()
-      await download(repo, tmp)
-      await generate(answers, tmp, to)
+      await downloadAndGenerate(target, to)
     }
     return
   }
-  const answers = await ask()
+  await downloadAndGenerate(target, to)
+}
+
+async function downloadAndGenerate (name, to) {
+  rm(tmp)
   await download(repo, tmp)
-  await generate(answers, tmp, to)
+  await generate(name, tmp, to)
+  logger.log(`
+# Project initialization finished!
+# ========================
+
+To get started:
+  ${chalk.yellow(`cd ${name}`)}
+  ${chalk.yellow('git init')} (husky needs Git)
+  ${chalk.yellow('npm run dev')}
+  `)
 }
