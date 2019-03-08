@@ -23,7 +23,7 @@ more detail see: [koa2-starter](https://github.com/liuxing/koa2-starter)
 ## Installation
 
 ```bash
-$ npm install -g koa-starter
+$ npm install -g koa2-starter
 ```
 
 ## Usage
